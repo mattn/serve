@@ -21,9 +21,10 @@ func main() {
 	log.Printf("serving %s as %s on %s", *root, *prefix, *addr)
 	http.Handle(*prefix, http.StripPrefix(*prefix, http.FileServer(http.Dir(*root))))
 
+	mux := http.DefaultServeMux.ServeHTTP
 	logger := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("%s %s %s", r.RemoteAddr, r.Method, r.URL)
-		http.DefaultServeMux.ServeHTTP(w, r)
+		log.Print(r.RemoteAddr + " " + r.Method + " " + r.URL.String())
+		mux(w, r)
 	})
 	err = http.ListenAndServe(*addr, logger)
 	if err != nil {
