@@ -39,7 +39,7 @@ golang
 ## Installation
 
 ```
-$ go get github.com/mattn/serve
+$ go install github.com/mattn/serve@latest
 ```
 
 ## License
