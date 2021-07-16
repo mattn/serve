@@ -11,6 +11,8 @@ func main() {
 	addr := flag.String("a", ":5000", "address to serve(host:port)")
 	prefix := flag.String("p", "/", "prefix path under")
 	root := flag.String("r", ".", "root path to serve")
+	certFile := flag.String("cf", "", "tls cert file")
+	keyFile := flag.String("kf", "", "tls key file")
 	flag.Parse()
 
 	var err error
@@ -26,7 +28,12 @@ func main() {
 		log.Print(r.RemoteAddr + " " + r.Method + " " + r.URL.String())
 		mux(w, r)
 	})
-	err = http.ListenAndServe(*addr, logger)
+
+	if *certFile != "" && *keyFile != "" {
+		err = http.ListenAndServeTLS(*addr, *certFile, *keyFile, logger)
+	} else {
+		err = http.ListenAndServe(*addr, logger)
+	}
 	if err != nil {
 		log.Fatalln(err)
 	}
