@@ -21,14 +21,14 @@ $ serve -r /tmp
 ### Serve files under /tmp as /foo
 
 ```
-$ serve -r /tmp -p /tmp
+$ serve -r /tmp -p /foo
 2014/10/29 19:36:41 serving /tmp as /foo on :5000
 ```
 
 ### Serve files under /tmp as /foo on 192.168.0.3:80
 
 ```
-$ serve -r /tmp -p /tmp -a 192.168.0.3:80
+$ serve -r /tmp -p /foo -a 192.168.0.3:80
 2014/10/29 19:36:41 serving /tmp as /foo on 192.168.0.3:80
 ```
 
