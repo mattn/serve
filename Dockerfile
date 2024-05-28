@@ -2,7 +2,7 @@
 
 FROM golang:1.21-alpine AS build-dev
 WORKDIR /go/src/app
-COPY --link go.mod go.sum ./
+COPY --link go.* ./
 RUN apk add --no-cache upx || \
     go version && \
     go mod download
