@@ -1,3 +1,3 @@
 module github.com/mattn/serve
 
-go 1.12
+go 1.21
