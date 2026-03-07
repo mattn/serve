@@ -32,6 +32,10 @@ func main() {
 		return
 	}
 
+	if *prefix != "/" && (*prefix)[len(*prefix)-1] != '/' {
+		*prefix += "/"
+	}
+
 	var err error
 	*root, err = filepath.Abs(*root)
 	if err != nil {
